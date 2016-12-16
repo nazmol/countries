@@ -12,24 +12,18 @@ class DropDown extends Component {
     this.close = this.close.bind(this);
   }
   componentDidMount(){
-    window.addEventListener("click", (e) => {
-      if(e.target.classList.contains('select')){
-        return;
-      }
-      this.close();
-    }, false);
+    window.addEventListener("click", this.close, false);
   }
   componentWillUnmount(){
-    window.removeEventListener("click", (e) => {
-      this.close();
-    }, false);
+    window.removeEventListener("click", this.close, false);
   }
-  close(){
-    if(this.state.isToggled) {
-      this.setState({
-        isToggled: false
-      })
-    }
+  close(e){
+    if(this.refs.wrapper.contains(e.target) && this.state.isToggled){
+      return; 
+    };
+    this.setState({
+      isToggled: false
+    });
   }
   toggle(){
     this.setState({
@@ -55,16 +49,16 @@ class DropDown extends Component {
         key={key}
       />
     })
-    return <div className='wrapper'>
-      <div className="select header" onClick={this.toggle}>
-        <span className='select item'>
+    return <div className='wrapper' ref='wrapper'>
+      <div className="header" onClick={this.toggle}>
+        <span className='item'>
           {selectedCountry === '' ? this.props.title : selectedCountry}</span>
-        <span className='select item'></span>
+        <span className='item'></span>
       </div>
       {
         !this.state.isToggled ?
           null :
-          <ul className="select menu">
+          <ul className="menu">
             { countryList }
           </ul>
       }

@@ -2,11 +2,10 @@ import React, { PropTypes } from 'react';
 
 const DropDownItem = (props) => {
   const { text, id, isSelected, click } = props;
-
   return <li
-    className={"select menu-item" + isSelected ? ' selected' : ''}
+    className={isSelected ? 'menu-item selected' : 'menu-item'}
     value={id}
-    onClick={ (e) => { click(id, e)} }
+    onClick={click}
     >
     { text }
   </li>

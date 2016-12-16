@@ -28,8 +28,5 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('watch', ['webpack:build', 'styles'], function(){
-  gulp.watch('./*.jsx', ['webpack:build']);
-  gulp.watch('./*.scss', ['styles'])
-});
+gulp.task('build', ['webpack:build', 'styles']);
 

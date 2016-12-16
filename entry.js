@@ -7,7 +7,7 @@ import App from './container';
 import dropdownReducer from './reducers';
 
 const preloadedState = {
-  selectedCountryId: '2',
+  selectedCountryId: '',  // for testing purpose
   countries: [{
       id: '1',
       name: 'Ukraine'
